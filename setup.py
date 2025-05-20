@@ -41,10 +41,11 @@ def choose_requirement(primary, secondary):
 
 
 def get_version():
+    version_dict = {}
     version_file = 'mmcv/version.py'
-    with open(version_file, encoding='utf-8') as f:
-        exec(compile(f.read(), version_file, 'exec'))
-    return locals()['__version__']
+    with open(version_file, 'r', encoding='utf-8') as f:
+        exec(compile(f.read(), version_file, 'exec'), version_dict)
+    return version_dict['__version__']
 
 
 def parse_requirements(fname='requirements/runtime.txt', with_version=True):
